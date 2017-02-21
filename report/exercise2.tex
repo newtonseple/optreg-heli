@@ -1,0 +1,49 @@
+% !TEX root = main.tex
+
+\section{Optimal control of Pitch/Travel without Feedback}
+\subsection{1}
+The time continuous system can be written as $\mathbf{\dot{x}} = \mathbf{A}_c\mathbf{x}+ \mathbf{B}_c\mathbf{u}$ where
+\begin{subequations}
+    \begin{align}
+        \mathbf{x} &= \begin{bmatrix}
+            \lambda\\
+            r\\
+            p\\
+            \dot{p}
+        \end{bmatrix}\\
+        \mathbf{A}_c &= \begin{bmatrix}
+            0 & 1 & 0 & 0\\
+            0 & 0 & -K_2 & 0\\
+            0 & 0 & 0 & 1\\
+            0 & 0& -K_1K_{pp} & -K_1K_{pd}
+        \end{bmatrix} \\
+        \mathbf{B}_c &= \begin{bmatrix}
+            0\\
+            0\\
+            0\\
+            K_1K_{pp}
+        \end{bmatrix}
+    \end{align}
+\end{subequations}
+
+This model does also include the pitch controller.
+
+\subsection{2}
+Discretizing the system using the explicit Euler method we have
+\begin{equation}
+    \mathbf{\dot{x}} = \mathbf{A}_c\mathbf{x}_k + \mathbf{B}_c\mathbf{u}_k \approx \frac{\mathbf{x}_{k+1}-\mathbf{x}}{h}
+\end{equation}
+
+This yields
+\begin{equation}
+    \mathbf{x}_{k+1} = (\mathbf{A}_ch + \mathbf{I})\mathbf{x}_k + h\mathbf{B}_c\mathbf{u}_k
+\end{equation}
+
+This means that
+\begin{subequations}
+    \begin{align}
+        \mathbf{A}_d &= \mathbf{A}_ch+\mathbf{I} \\
+        \mathbf{B}_d &= h\mathbf{B}_c
+    \end{align}
+
+\end{subequations}

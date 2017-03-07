@@ -2,7 +2,7 @@
 
 \section{Optimal control of Pitch/Travel without Feedback}
 \subsection{1}
-The time continuous system can be written as $\mathbf{\dot{x}} = \mathbf{A}_c\mathbf{x}+ \mathbf{B}_c\mathbf{u}$ where
+The time continuous system can be written as $\mathbf{\dot{x}} = \mathbf{A}_c\mathbf{x}+ \mathbf{B}_c\mathbf{u}$, with
 \begin{subequations}
     \begin{align}
         \mathbf{x} &= \begin{bmatrix}
@@ -26,20 +26,20 @@ The time continuous system can be written as $\mathbf{\dot{x}} = \mathbf{A}_c\ma
     \end{align}
 \end{subequations}
 
-This model does also include the pitch controller.
+This is a model of the helicopter with pitch controller. The model inputs are set points for the pitch controller. 
 
 \subsection{2}
-Discretizing the system using the explicit Euler method we have
+The system was discretized using forward Euler:
 \begin{equation}
     \mathbf{\dot{x}} = \mathbf{A}_c\mathbf{x}_k + \mathbf{B}_c\mathbf{u}_k \approx \frac{\mathbf{x}_{k+1}-\mathbf{x}}{h}
 \end{equation}
 
-This yields
+Rearranging, we get
 \begin{equation}
     \mathbf{x}_{k+1} = (\mathbf{A}_ch + \mathbf{I})\mathbf{x}_k + h\mathbf{B}_c\mathbf{u}_k
 \end{equation}
 
-This means that
+and we see that
 \begin{subequations}
     \begin{align}
         \mathbf{A}_d &= \mathbf{A}_ch+\mathbf{I} \\
@@ -47,3 +47,14 @@ This means that
     \end{align}
 
 \end{subequations}
+\todo{Insert Ad and Bd here as well}
+
+\subsection{3}
+The cost function \todo{insert cost function (15)} consists of two terms, $\lambda_i - \lambda_f)^2$ and $qp_{ci}^2$. The first one aims to penalize deviation from the reference point $\lambda_f$, while the second one penalizes inputs $p_{ci}^2$. The relative cost of the two terms is set using the weight q. 
+
+One possible downside to the cost term $(\lambda_i - \lambda_f)^2$ could be that it does not take into account that $\lambda_i = \lambda_ i + 2\pi$, resulting in very poor pathing if exposed to a large perturbation. On the other hand, it might be desirable to actually do one or multiple revolutions.
+\todo{finner vi flere ulemper?}
+
+\subsection{4}
+\todo{insert code + plots}
+The helicopter does not end in the desired point $x_f$. This is largely \todo{er det flere grunner?} because of model inaccuracies; discretization errors from using forward Euler and linearization errors, in addition to inherent model errors/simplifications. Also, the system is affected by noise (e.g. wind currents) as well as measurement errors. 

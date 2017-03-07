@@ -3,7 +3,7 @@
 % Updated spring 2017, Andreas L. Fl?ten
 
 %% Initialization and model definition
-init; % NB: Change this to the init file corresponding to your helicopter
+%%init; % NB: Change this to the init file corresponding to your helicopter
 delta_t	= 0.25; % sampling time
 
 % Discrete time system model. x = [lambda r p p_dot]'
@@ -55,7 +55,7 @@ Q1(1,1) = 1;                             % Weight on state x1
 Q1(2,2) = 0;                            % Weight on state x2
 Q1(3,3) = 0;                             % Weight on state x3
 Q1(4,4) = 0;                            % Weight on state x4
-P1 = 0;                                 % Weight on input
+P1 = 10;                                 % Weight on input
 Q = 2*genq2(Q1,P1,N,M,mu);              % Generate Q
 c = zeros(N*mx+M*mu,1);                 % Generate c
 

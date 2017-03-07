@@ -1,4 +1,4 @@
-function [vlb,vub] = genBegr2(N,M,xl,xu,ul,uu);
+function [vlb,vub] = genbegr2(N,M,xl,xu,ul,uu);
 
  
 % Funksjon som genererer begrensninger paa paadragene og tilstandene.

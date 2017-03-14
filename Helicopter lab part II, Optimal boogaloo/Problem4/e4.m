@@ -11,6 +11,7 @@ alpha = 0.2;
 beta = 20;
 lambda_t = 2*pi/3;
 
+elev_const_by_lambda = @(lambda_in) alpha * exp(-beta*(lambda_in-lambda_t)^2);
 %% Input weights
 %r1 = 1; % pitch
 %r2 = 1; % elevation
@@ -151,11 +152,21 @@ subplot(816)
 plot(t,x4,'m',t,x4','mo'),grid
 ylabel('pdot')
 subplot(817)
-plot(t,x5,'m',t,x5','mo'),grid
+plot(t,x5,'m',t,x5','mo',t,arrayfun(elev_const_by_lambda,x1)),grid
 ylabel('e')
 subplot(818)
 plot(t,x6,'m',t,x6','mo'),grid
 xlabel('tid (s)'),ylabel('edot')
+%%Constraint plot
+
+figure(3)
+plot(x1,x5,'-o',(-0.5:0.01:3.5),arrayfun(elev_const_by_lambda,(-0.5:0.01:3.5)),'m--', ...
+                x1,arrayfun(elev_const_by_lambda,x1),'r-x')
+title('Optimal path')
+legend('Calculated optimal path','Constraint', 'Constraint (evaluation points)')
+xlabel('\lambda [rad]')
+ylabel('e [rad]')
+
 
 %%Simulink stuff
 inputVec= [t' u1 u2];

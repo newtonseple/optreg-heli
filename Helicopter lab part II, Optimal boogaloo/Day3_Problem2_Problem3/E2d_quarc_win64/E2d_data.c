@@ -3,9 +3,9 @@
  *
  * Code generation for model "E2d".
  *
- * Model version              : 1.172
+ * Model version              : 1.177
  * Simulink Coder version : 8.6 (R2014a) 27-Dec-2013
- * C source code generated on : Tue Feb 28 12:55:27 2017
+ * C source code generated on : Tue Mar 14 12:02:06 2017
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping

@@ -1,0 +1,5 @@
+2 3) P = 0.1, 1, 10 in oppgave 2 OPTIMIZATION ONLY Done
+2 4) P = 1 GET DATA Done
+3 2) P = 1 with LQR feedback GET DATA Done
+4 4) without LQR GET DATA
+     with LQR GET DATA

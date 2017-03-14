@@ -153,6 +153,7 @@ plot(t,x4,'m',t,x4','mo'),grid
 ylabel('pdot')
 subplot(817)
 plot(t,x5,'m',t,x5','mo',t,arrayfun(elev_const_by_lambda,x1)),grid
+%plot(t,x5,'m',t,x5','mo'),grid
 ylabel('e')
 subplot(818)
 plot(t,x6,'m',t,x6','mo'),grid

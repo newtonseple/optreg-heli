@@ -1,7 +1,7 @@
 % !TEX root = main.tex
 
 \section{Optimal control of Pitch/Travel without Feedback}
-\subsection{}
+\subsection{1}
 The time continuous system can be written as $\mathbf{\dot{x}} = \mathbf{A}_c\mathbf{x}+ \mathbf{B}_c\mathbf{u}$, with
 \begin{subequations}
     \begin{align}
@@ -26,9 +26,9 @@ The time continuous system can be written as $\mathbf{\dot{x}} = \mathbf{A}_c\ma
     \end{align}
 \end{subequations}
 
-This is a model of the helicopter with pitch controller. The model inputs are set points for the pitch controller. 
+This is a model of the helicopter with pitch controller. The model inputs are set points for the pitch controller.
 
-\subsection{}
+\subsection{2}
 The system was discretized using forward Euler:
 \begin{equation}
     \mathbf{\dot{x}} = \mathbf{A}_c\mathbf{x}_k + \mathbf{B}_c\mathbf{u}_k \approx \frac{\mathbf{x}_{k+1}-\mathbf{x}}{h}
@@ -47,14 +47,30 @@ and we see that
     \end{align}
 
 \end{subequations}
-\todo{Insert Ad and Bd here as well}
 
-\subsection{}
-The cost function \todo{insert cost function (15)} consists of two terms, $\lambda_i - \lambda_f)^2$ and $qp_{ci}^2$. The first one aims to penalize deviation from the reference point $\lambda_f$, while the second one penalizes inputs $p_{ci}^2$. The relative cost of the two terms is set using the weight q. 
+\begin{subequations}
+    \begin{align}
+        \mathbf{A_d} &= \begin{bmatrix}
+        0 & 1 & 0 & 0\\
+        0 & 0 & -K_2 & 0\\
+        0 & 0 & 0 & 1\\
+        0 & 0 & -K_1K_{pp} & -K_1K_{pd}
+        \end{bmatrix}\\
+        \mathbf{B_d} &= \begin{bmatrix}
+        0\\
+        0\\
+        0\\
+        K_1K_{pp}
+    \end{bmatrix}
+    \end{align}
+\end{subequations}
 
-One possible downside to the cost term $(\lambda_i - \lambda_f)^2$ could be that it does not take into account that $\lambda_i = \lambda_ i + 2\pi$, resulting in very poor pathing if exposed to a large perturbation. On the other hand, it might be desirable to actually perform one or multiple revolutions.
+\subsection{3}
+The cost function \todo{insert cost function (15)} consists of two terms, $\lambda_i - \lambda_f)^2$ and $qp_{ci}^2$. The first one aims to penalize deviation from the reference point $\lambda_f$, while the second one penalizes inputs $p_{ci}^2$. The relative cost of the two terms is set using the weight q.
+
+One possible downside to the cost term $(\lambda_i - \lambda_f)^2$ could be that it does not take into account that $\lambda_i = \lambda_ i + 2\pi$, resulting in very poor pathing if exposed to a large perturbation. On the other hand, it might be desirable to actually do one or multiple revolutions.
 \todo{finner vi flere ulemper?}
 
-\subsection{}
+\subsection{4}
 \todo{insert code + plots}
-The helicopter does not end in the desired point $x_f$ for any of the weights. This is largely \todo{er det flere grunner?} because of model inaccuracies; discretization errors from using forward Euler and linearization errors, in addition to inherent model errors/simplifications. Also, the system is affected by noise (e.g. wind currents), as well as measurement errors. This all leads to an error in $dot{\lambda}$, causing the helicopter to drift away from the reference point. \todo{mulig siste setning er overflødig.}
+The helicopter does not end in the desired point $x_f$. This is largely \todo{er det flere grunner?} because of model inaccuracies; discretization errors from using forward Euler and linearization errors, in addition to inherent model errors/simplifications. Also, the system is affected by noise (e.g. wind currents) as well as measurement errors.

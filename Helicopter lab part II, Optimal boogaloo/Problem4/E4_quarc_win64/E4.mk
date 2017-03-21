@@ -129,7 +129,7 @@ RELATIVE_PATH_TO_ANCHOR   = ..
 MODELREF_TARGET_TYPE      = NONE
 
 #-- Support for parallel builds
-START_DIR         = E:\Helicopter lab part II, Optimal boogaloo\Problem4
+START_DIR         = E:\HELICO~1\Problem4
 MASTER_ANCHOR_DIR = 
 
 #-- Support multi-instance code

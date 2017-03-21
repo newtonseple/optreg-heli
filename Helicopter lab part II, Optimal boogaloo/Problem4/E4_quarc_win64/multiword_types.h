@@ -5,7 +5,7 @@
  *
  * Model version              : 1.176
  * Simulink Coder version : 8.6 (R2014a) 27-Dec-2013
- * C source code generated on : Tue Mar 14 13:16:48 2017
+ * C source code generated on : Tue Mar 21 10:20:15 2017
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping

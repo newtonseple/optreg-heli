@@ -19,18 +19,18 @@ elev_const_by_lambda = @(lambda_in) alpha * exp(-beta*(lambda_in-lambda_t)^2);
 
 %% Continuous model
 Ac = [0   1   0   0   0   0;
-       0   0 -K_2  0   0   0;
-       0   0   0   1   0   0;
-       0   0 -K_1*K_pp -K_1*K_pd 0 0;
-       0   0   0   0   0   1;
-       0   0   0   0 -K_3*K_ep -K_3*K_ed];
+      0   0 -K_2  0   0   0;
+      0   0   0   1   0   0;
+      0   0 -K_1*K_pp -K_1*K_pd 0 0;
+      0   0   0   0   0   1;
+      0   0   0   0 -K_3*K_ep -K_3*K_ed];
    
 Bc = [0    0;
-       0    0;
-       0    0;
+      0    0;
+      0    0;
      K_1*K_pp 0;
-       0    0;
-       0  K_3*K_ep];
+      0    0;
+      0  K_3*K_ep];
 
 %% Number of states and inputs
 mx = size(Ac,2); % Number of states (number of columns in A)

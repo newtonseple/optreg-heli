@@ -1,9 +1,11 @@
+% !TEX root = main.tex
+
 \section{Optimal Control of Pitch/Travel with Feedback (LQ)}
 \subsection{3}
 MPC can be realized by solving a finite horizon open loop optimal control problem at each time step, \todo{how to do dis in simulink}
 
-One advantage with MPC compared to LQR is that MPCis more robust. In addition, MPC allows the use of constraints.
+One advantage with MPC compared to LQR is that MPC is more robust. This is because the MPC calculates a new optimal input for each timestep, rather than doing everything a priori. In addition, MPC allows the use of constraints.
 
+\missingfigure{\label{fig:prob3_lambda}}
 
-On the other hand, MPC is far more resource-demanding than LQR\todo{LQ eller LQR?}. Also, the solution using MPC is usually not optimal in the context of the cost function (as mentioned above, it optimizes with respect to stability or other metrics). Another downside to MPC is that it requires a model of the system, while LQR does not.   
-
+On the other hand, MPC is far more resource-demanding than LQR\todo{LQ eller LQR?}. Also, the solution using MPC is usually not optimal in the context of the cost function (as mentioned above, it optimizes with respect to stability or other metrics). Another downside to MPC is that it requires a model of the system, while LQR does not.

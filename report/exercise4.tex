@@ -1,20 +1,31 @@
 % !TEX root = main.tex
 
 \section{Exercise 4}
-\subsection{Continuous state space model}
-\begin{equation}
-    \mathbf{A_c} = \begin{bmatrix}
+\subsection{Continuous time state space model}
+We introduce two new states. The continuous time system can now be written as $\mathbf{\dot{x}} = \mathbf{A}_c\mathbf{x}+ \mathbf{B}_c \mathbf{u}$, with
+\begin{subequations}
+    \begin{align}
+        \mathbf{x} &= \begin{bmatrix}
+            \lambda\\
+            r\\
+            p\\
+            \dot{p}\\
+            e\\
+            \dot{e}\\
+        \end{bmatrix}\\
+        \mathbf{u} &= \begin{bmatrix}
+            p_c\\
+            e_c\\
+        \end{bmatrix}\\
+    \mathbf{A_c} &= \begin{bmatrix}
         0 & 1 & 0          & 0          & 0          & 0         \\
         0 & 0 & -K_2       & 0          & 0          & 0         \\
         0 & 0 & 0          & 1          & 0          & 0         \\
         0 & 0 & -K_1K_{pp} & -K_1K_{pd} & 0          & 0         \\
         0 & 0 & 0          & 0          & 0          & 1         \\
         0 & 0 & 0          & 0          & -K_3K_{ep} & -K_3K_{ed}
-    \end{bmatrix}
-\end{equation}
-
-\begin{equation}
-    \mathbf{B_c} = \begin{bmatrix}
+    \end{bmatrix}\\
+    \mathbf{B_c} &= \begin{bmatrix}
         0         & 0        \\
         0         & 0        \\
         0         & 0        \\
@@ -22,4 +33,35 @@
         0         & 0        \\
         0         & K_3K_{ep}
     \end{bmatrix}
+    \end{align}
+\end{subequations}
+\subsection{Discrete time state space model}
+The system was discretized using the forward Euler method. Using \cref{eq:eulerfwd}, we get the model $\mathbf{x_{k+1}} = \mathbf{A}_d\mathbf{x_k}+\mathbf{B}_d \mathbf{u_k}$, where
+\begin{subequations}
+    \begin{align}
+    \mathbf{A_d} &= \begin{bmatrix}
+        1 & h & 0           & 0            & 0           & 0         \\
+        0 & 1 & -hK_2       & 0            & 0           & 0         \\
+        0 & 0 & 1           & h            & 0           & 0         \\
+        0 & 0 & -hK_1K_{pp} & 1-hK_1K_{pd} & 0           & 0         \\
+        0 & 0 & 0           & 0            & 1           & h         \\
+        0 & 0 & 0           & 0            & -hK_3K_{ep} & 1-hK_3K_{ed}
+    \end{bmatrix}\\
+    \mathbf{B_d} &= \begin{bmatrix}
+        0          & 0        \\
+        0          & 0        \\
+        0          & 0        \\
+        hK_1K_{pp} & 0        \\
+        0          & 0        \\
+        0          & hK_3K_{ep}
+    \end{bmatrix}
+    \end{align}
+\end{subequations}
+
+\subsection{Inequality constraints on elevation}
+In this exercise, we restricted the helicopter to obey the non-linear inequality constraint 
+\begin{equation}
+e_k \geq \alpha e^{-\beta(\lambda_k-\lambda_t)^{2}}
 \end{equation}
+
+

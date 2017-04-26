@@ -88,8 +88,8 @@ The weight matrix Q was generated using the function genq2, and c is a vector of
 
 Finally, mx denotes the number of states, mu the number of inputs, N the time horizon for states and M the time horizon for inputs. For a more detailed description of the above functions, see Appendix X.\todo{make an actual reference}
 
-The optimal input and optimal trajectory for the travel rate $\lambda$ are shown in the following plots.
-\clearpage
+The optimal input and optimal trajectory for the travel rate $\lambda$ are shown in the following plots.\todo{Add references}
+%\clearpage %Let LaTeX handle this
 
 \begin{figure}[h]
     \centering
@@ -132,5 +132,7 @@ The Simulink implementation is shown below. For the full Matlab code, see the Ap
 \end{figure}
 
 The helicopter does not end in the desired point $x_f$. There seems to be a constant error in travel rate or pitch. This is largely \todo{er det flere grunner?} because of model inaccuracies; discretization errors from using forward Euler and linearization errors, in addition to inherent model errors/simplifications. Also, the system is affected by noise (e.g. wind currents) as well as measurement errors.
+
+\todo[inline]{Comment on helicopter drifting? UPDATE: Replace ? with !. Assumed in next part}
 
 %\clearpage

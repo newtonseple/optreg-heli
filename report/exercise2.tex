@@ -105,13 +105,32 @@ The optimal input and optimal trajectory for the travel rate $\lambda$ are shown
     \label{fig:optimal_lambda}
 \end{figure}
 
-The cost function \todo{insert cost function (15)} consists of two terms, $(\lambda_i - \lambda_f)^2$ and $qp_{ci}^2$. The first one aims to penalize deviation from the reference point $\lambda_f$, while the second one penalizes inputs $p_{ci}^2$. The relative cost of the two terms is set using the weight q. This can be seen in [\ref{fig:optimal_inputs}]; optimal input trajectories with larger Q are associated with a higher cost on the input, and are therefore more damped compared to optimal inputs with smaller Q. 
+The cost function \todo{insert cost function (15)} consists of two terms, $(\lambda_i - \lambda_f)^2$ and $qp_{ci}^2$. The first one aims to penalize deviation from the reference point $\lambda_f$, while the second one penalizes inputs $p_{ci}^2$. The relative cost of the two terms is set using the weight q. This can be seen in [\ref{fig:optimal_inputs}]; optimal input trajectories with larger Q are associated with a higher cost on the input, and are therefore more damped compared to optimal inputs with smaller Q. This is also reflected in [\ref{optimal_lambda}]; the optimal trajectory with the smallest weight is the fastest one, at the cost of some overshoot. 
 
-The smallest weight $Q=0.1$ gives the most aggressive control, but requires rapid changes in input, which might wear down the system over time. Without detailed knowledge of the system, $Q=1$ seems like a good compromise; it is reasonably fast and not so hard on the actuators. In addition, [\ref{fig:optimal_lambda}] shows that it has the least amount of overshoot. 
+The smallest weight $Q=0.1$ gives the most aggressive control, but requires rapid changes in input, which might wear down the system over time. $Q=10$ on the other hand, seems rather slow. $Q=1$ seems like a good compromise; it is reasonably fast and not so hard on the actuators. In addition, [\ref{fig:optimal_lambda}] shows that it, at least in theory, gives the least amount of overshoot. 
 
-One possible downside to the cost term $(\lambda_i - \lambda_f)^2$ could be that it does not take into account that $\lambda_i = \lambda_ i + 2\pi$, resulting in very poor pathing if exposed to a large perturbation. On the other hand, it might be desirable to actually do one or multiple revolutions.
+One downside of the cost function is that it does not include travel rate. So if the time horizon is not large enough, one might risk that it moves to the set point as fast as possible, without trying to stay there. In other words, it might have a high travel rate when it reaches the destination. 
+
+Another possible downside to the cost term $(\lambda_i - \lambda_f)^2$ could be that it does not take into account that $\lambda_i = \lambda_ i + 2\pi$, resulting in very poor pathing if exposed to a large perturbation. On the other hand, it might be desirable to actually perform one or multiple revolutions.
 \todo{finner vi flere ulemper?}
+\clearpage
 
 \subsection{4}
-\todo{insert code + plots}
-The helicopter does not end in the desired point $x_f$ for any of the states. This is largely \todo{er det flere grunner?} because of model inaccuracies; discretization errors from using forward Euler and linearization errors, in addition to inherent model errors/simplifications. Also, the system is affected by noise (e.g. wind currents) as well as measurement errors.
+The Simulink implementation is shown below. For the full Matlab code, see the Appendix. 
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{E24_cropped.eps}}
+    \caption{Caption}
+    \label{fig:my_label}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{optimal_and_measured_lambda.eps}}
+    \caption{Caption}
+    \label{fig:my_label}
+\end{figure}
+
+The helicopter does not end in the desired point $x_f$. There seems to be a constant error in travel rate or pitch. This is largely \todo{er det flere grunner?} because of model inaccuracies; discretization errors from using forward Euler and linearization errors, in addition to inherent model errors/simplifications. Also, the system is affected by noise (e.g. wind currents) as well as measurement errors.
+
+\clearpage

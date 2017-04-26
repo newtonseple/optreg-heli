@@ -2,7 +2,7 @@
 
 \section{Optimal control of Pitch/Travel without Feedback}
 \subsection{1}
-The time continuous system can be written as $\mathbf{\dot{x}} = \mathbf{A}_c\mathbf{x}+ \mathbf{B}_c\mathbf{u}$, with
+The continuous time system can be written as $\mathbf{\dot{x}} = \mathbf{A}_c\mathbf{x}+ \mathbf{B}_c\mathbf{u}$, with
 \begin{subequations}
     \begin{align}
         \mathbf{x} &= \begin{bmatrix}
@@ -66,7 +66,29 @@ and we see that
 \end{subequations}
 
 \subsection{3}
-The cost function \todo{insert cost function (15)} consists of two terms, $\lambda_i - \lambda_f)^2$ and $qp_{ci}^2$. The first one aims to penalize deviation from the reference point $\lambda_f$, while the second one penalizes inputs $p_{ci}^2$. The relative cost of the two terms is set using the weight q.
+The optimal trajectory was calculated using quadprog, which takes a weight matrix Q, vector c (from the cost function $x^TQx + c^Tx$), inequality constraints matrices A, B, equality constraints Aeq, Beq and lower and upper bounds vlb, vub on the inputs, and returns a vector z with the optimal trajectory for all the states, along with a vector \lambda containing the Lagrange multipliers at the solution.
+
+\begin{lstlisting}
+    [z,lambda] = quadprog(Q,c,[],[], Aeq, beq, vlb, vub);
+\end{lstlisting}
+
+\begin{lstlisting}
+    Q1(1,1) = 1;
+    ...
+    P1 = 10;  
+    Q = 2*genq2(Q1,P1,N,M,mu);
+    c = zeros(N*mx+M*mu,1); 
+    ...
+    Aeq = gena2(A1,B1,N,mx,mu);         
+    beq = zeros(size(Aeq,1),1);
+    ...
+    [vlb,vub]       = genbegr2(N,M,xl,xu,ul,uu); 
+\end{lstlisting}
+The weight matrix Q was generated using the function genq2, and c is a vector of zeros. Aeq was generated using the function gena2, while beq is a vector of zeros. The constraints on the inputs were implemented using the given function genbegr2. 
+
+Finally, mx denotes the number of states, mu the number of inputs, N the time horizon for states and M the time horizon for inputs. For a more detailed description of the above functions, see Appendix X. 
+
+The cost function \todo{insert cost function (15)} consists of two terms, $\lambda_i - \lambda_f)^2$ and $qp_{ci}^2$. The first one aims to penalize deviation from the reference point $\lambda_f$, while the second one penalizes inputs $p_{ci}^2$. The relative cost of the two terms is set using the weight q. This is reflected 
 
 One possible downside to the cost term $(\lambda_i - \lambda_f)^2$ could be that it does not take into account that $\lambda_i = \lambda_ i + 2\pi$, resulting in very poor pathing if exposed to a large perturbation. On the other hand, it might be desirable to actually do one or multiple revolutions.
 \todo{finner vi flere ulemper?}

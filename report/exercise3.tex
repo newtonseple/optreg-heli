@@ -1,7 +1,10 @@
 % !TEX root = main.tex
 
 \section{Optimal Control of Pitch/Travel with Feedback (LQ)}
-\subsection{3}
+\subsection{LQR}
+In the previous exercise we calculated the optimal path, and fed it to the PID controllers. This worked well, but when the helicopter reached the final position, it did not stay there, as it did not correct for the drift in position due to momentum. This can be corrected with the use of a second controller between the optimization layer and the basic control layer. This controller will ensure that the helicopter stays on the planned trajectory. 
+
+\subsection{MPC}
 MPC can be realized by solving a finite horizon open loop optimal control problem at each time step, \todo{how to do dis in simulink}
 
 One advantage with MPC compared to LQR is that MPC is more robust. This is because the MPC calculates a new optimal input for each timestep, rather than doing everything a priori. In addition, MPC allows the use of constraints.

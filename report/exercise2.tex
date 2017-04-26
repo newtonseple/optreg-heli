@@ -2,7 +2,7 @@
 
 \section{Optimal control of Pitch/Travel without Feedback}
 \subsection{1}
-The time continuous system can be written as $\mathbf{\dot{x}} = \mathbf{A}_c\mathbf{x}+ \mathbf{B}_c\mathbf{u}$, with
+The time continuous system can be written as $\mathbf{\dot{x}} = \mathbf{A}_c\mathbf{x}+ \mathbf{B}_c u$, with
 \begin{subequations}
     \begin{align}
         \mathbf{x} &= \begin{bmatrix}
@@ -11,6 +11,7 @@ The time continuous system can be written as $\mathbf{\dot{x}} = \mathbf{A}_c\ma
             p\\
             \dot{p}
         \end{bmatrix}\\
+        \mathbf{u} &= p_c \\
         \mathbf{A}_c &= \begin{bmatrix}
             0 & 1 & 0 & 0\\
             0 & 0 & -K_2 & 0\\

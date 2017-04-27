@@ -90,17 +90,22 @@ e_k \geq \alpha e^{-\beta(\lambda_k-\lambda_t)^{2}}
 every timestep $k$ until the time horizon.
 Since this constraint is non-linear, a non-linear solver was needed. The matlab function \texttt{fmincon} was used to compute the optimal trajectory through the state space.
 
-\todo[inline]{MAYBE ADD EXPLAIN FMINCON SOLUTION METHOD}
+%\todo[inline]{MAYBE ADD EXPLAIN FMINCON SOLUTION METHOD?}
 
 \todo[inline]{ADD PLOTS OF THE OPTIMAL PATH!!}
-\todo[inline]{DISCUSS RESULTS!!}
+
+%\todo[inline]{DISCUSS RESULTS!! Done here:}
+The calculated optimal trajectory, shown in (REFERANSE FIGUR), looks much like the one from (REFERANSE P2). The elevation trajectory is also calculated, and appears to adhere to our constraint. Upon closer inspection, however, it is revealed that the trajectory passes through the constraint. This is because the discretization is too coarse to catch the ``collision'' (see (REFERANSE FIGUR2)).
 
 \subsection{Experimental results}
 The optimal trajectory was fed into the helicopter, both with and without feedback
 
 \todo[inline]{ADD PLOTS OF THE EXPERIMENT PATH!!}
-\todo[inline]{DISCUSS RESULTS!!}
+%\todo[inline]{DISCUSS RESULTS!! Done here:}
+The open-loop results, shown in (REFERANSE FIGUR), looks much like the one from (REFERANSE P2), measured $\lambda$ drifting off because of the lack of feedback. Measured $e$ was closer to following the path, because that state has its own controller with feedback anyway.
+
+The closed loop results, shown in (REFERANSE FIGUR), also reminds us of (REFERANSE P2). While developing a relatively small constant error, the system reaches the target. It fails to stay entirely above the constraint. This is partially because the calculated optimal path travels through it, but also because the controller is not fast and accurate enough at that scale, and because the model is inaccurate. If the constraint represented an obstacle or hazard, it would have to be avoided by adding a bigger ``buffer zone''. Alternatively, An MPC controller could be used, allowing new paths avoiding the constraint to be calculated online.
 
 \subsection{Decoupled states}
-
-\todo[inline]{ADD INFO ABOUT DECOUPLED STATES}
+%\todo[inline]{ADD INFO ABOUT DECOUPLED STATES!! Done here:}
+In the model used in this exercise, the elevation and pitch systems are completely decoupled. This is obviously not true, as tilting tilting the helicopter makes it harder to fly upwards, resulting in an inaccurate model. The model could include crossing terms accounting for this coupling, but that would make the objective function non-linear, making the problem a lot harder, computationally.

@@ -58,10 +58,31 @@ The system was discretized using the forward Euler method. Using \cref{eq:eulerf
     \end{align}
 \end{subequations}
 
-\subsection{Inequality constraints on elevation}
-In this exercise, we restricted the helicopter to obey the non-linear inequality constraint 
+\subsection{Objective function and inequality constraints on elevation}
+In this exercise, we minimized the cost function
+\begin{equation}
+        \phi =\sum (\lambda_t - \lambda_f)^2 + r_{p}p_{ct}^2 + r_{e}e_{ct}^2
+\end{equation}
+This can be written as
+\begin{subequations}
+    \begin{align}
+        \phi &= \sum(x^{T}Qx+u^{T}Ru) \\
+        \mathbf{Q} &= \begin{bmatrix}
+        1 & 0 & 0 & 0 & 0 & 0         \\
+        0 & 0 & 0 & 0 & 0 & 0         \\
+        0 & 0 & 0 & 0 & 0 & 0         \\
+        0 & 0 & 0 & 0 & 0 & 0         \\
+        0 & 0 & 0 & 0 & 0 & 0         \\
+        0 & 0 & 0 & 0 & 0 & 0         
+        \end{bmatrix}\\
+        \mathbf{R} &= \begin{bmatrix}
+            q_1        & 0        \\
+            0          & q_2        
+        \end{bmatrix}
+    \end{align}
+\end{subequations}
+We restricted the helicopter to obey the non-linear inequality constraint
 \begin{equation}
 e_k \geq \alpha e^{-\beta(\lambda_k-\lambda_t)^{2}}
 \end{equation}
-
-
+every timestep $k$ until the time horizon.

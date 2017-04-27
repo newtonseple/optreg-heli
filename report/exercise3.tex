@@ -48,11 +48,10 @@ Using these weights we implemented the LQ controller using the code found in lis
 This gives us the response seen in \cref{fig:opt_meas_lambda_ex3}. As we can see, we no longer have the drifting problem experienced earlier. We do, however have a constant error. This error could be removed if the LQ controller also had an integral term.
 
 \subsection{MPC}
-MPC can be realized by solving a finite horizon open loop optimal control problem at each time step, \todo{how to do dis in simulink}
+MPC can be realized by solving a finite horizon open loop optimal control problem at each time step. This calculates the optimal trajectory from the current position at each timestep, then applies the first input. In this way the MPC implement sa feedback loop, and finds the optimal way to cancel out disturbances. This is computationally expensive, but you get the ability to add constraints, a feature lacking in simpler controllers. A consequence of this is that while we have to use three layers of control, one to find the optimal trajectory, one to ensure that the helicopter stays on the trajectory and one to control the acuators, a MPC combines the first two layers, and as such only needs two layers. 
 
-\todo[inline]{Skriv om de neste to avsnittene så de blir sanne}
-
-One advantage with MPC compared to LQR is that MPC is more robust. This is because the MPC calculates a new optimal input for each timestep, rather than doing everything a priori. In addition, MPC allows the use of constraints.
-
-On the other hand, MPC is far more resource-demanding than LQR. \todo {from this point is bad} Also, the solution using MPC is usually not optimal in the context of the cost function (as mentioned above, it optimizes with respect to stability or other metrics). Another downside to MPC is that it requires a model of the system, while LQR does not.
-
+%\todo[inline]{Skriv om de neste to avsnittene så de blir sanne}
+%
+%One advantage with MPC compared to LQR is that MPC is more robust. This is because the MPC calculates a new optimal input for each timestep, rather than doing everything a priori. In addition, MPC allows the use of constraints.
+%
+%On the other hand, MPC is far more resource-demanding than LQR. Also, the solution using MPC is usually not optimal in the context of the cost function (as mentioned above, it optimizes with respect to stability or other metrics). Another downside to MPC is that it requires a model of the system, while LQR does not.

@@ -65,14 +65,14 @@ and we see that
     \end{align}
 \end{subequations}
 
-It should be noted that forward Euler has rather awful precision and stability properties compared to other discretization methods. On the plus side, it is intuitive and easy to implement. 
+It should be noted that forward Euler has rather awful precision and stability properties compared to other discretization methods. On the plus side, it is intuitive and easy to implement.
 
 \subsection{Optimal trajectory planning}
 \begin{lstlisting}
     [z,lambda] = quadprog(Q,c,[],[], Aeq, beq, vlb, vub);
 \end{lstlisting}
 
-The optimal trajectory was calculated using \texttt{quadprog}, which takes a weight matrix \texttt{Q}, vector \texttt{c} (from the cost function $x^TQx + c^Tx$), inequality constraints matrices \texttt{A}, \texttt{B}, equality constraints \texttt{Aeq}, \texttt{Beq} and lower and upper bounds \texttt{vlb}, \texttt{vub} on the inputs, and returns a vector z with the optimal trajectory for all the states, along with a vector $\lambda$ containing the Lagrange multipliers at the solution.
+The optimal trajectory \todo{what optimal trajectory?} was calculated using \texttt{quadprog}, which takes a weight matrix \texttt{Q}, vector \texttt{c} (from the cost function $x^TQx + c^Tx$), inequality constraints matrices \texttt{A}, \texttt{B}, equality constraints \texttt{Aeq}, \texttt{Beq} and lower and upper bounds \texttt{vlb}, \texttt{vub} on the inputs, and returns a vector z with the optimal trajectory for all the states, along with a vector $\lambda$ containing the Lagrange multipliers at the solution.
 
 \begin{lstlisting}
     Q1(1,1) = 1;
@@ -90,7 +90,7 @@ The weight matrix \texttt{Q} was generated using the function \texttt{genq2}, an
 
 Finally, \texttt{mx} denotes the number of states, \texttt{mu} the number of inputs, \texttt{N} the time horizon for states and \texttt{M} the time horizon for inputs. For a more detailed description of the above functions, see Appendix \ref{appendix:A}.
 
-The optimal input and optimal trajectory for the travel rate $\lambda$ are shown in \cref{fig:optimal_inputs} and \cref{fig:optimal_lambda}, respectively. 
+The optimal input and optimal trajectory for the travel rate $\lambda$ are shown in \cref{fig:optimal_inputs} and \cref{fig:optimal_lambda}, respectively.
 %\clearpage %Let LaTeX handle this
 
 \begin{figure}[h]
@@ -129,6 +129,6 @@ The Simulink implementation can be found in Appendix \ref{appendix:B}. Zeros wer
 
 The helicopter does not end in the desired point $x_f$. There seems to be a constant error in travel rate or pitch. This is largely \todo{er det flere grunner?} because of model inaccuracies; discretization errors from using forward Euler and linearization errors, in addition to inherent model errors/simplifications. Also, the system is affected by noise (e.g. wind currents) as well as measurement errors.
 
-If our model was completely accurate, the helicopter would have followed the planned trajectory. However, since this never is the case, the fault lies in the regulator; there is no feedback for $\lambda$, so it has no way to correct for the model inaccuracies. 
+If our model was completely accurate, the helicopter would have followed the planned trajectory. However, since this never is the case, the fault lies in the regulator; there is no feedback for $\lambda$, so it has no way to correct for the model inaccuracies.
 
 %\clearpage

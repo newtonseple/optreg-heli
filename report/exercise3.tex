@@ -11,6 +11,7 @@ This second regulator is implemented as a LQ controller. This regulator minimize
 \end{equation}
 
 The $\mathbf{Q}$ and $R$ was chosen to be
+
 \begin{subequations}
     \begin{align}
         \mathbf{Q} &= \begin{bmatrix}
@@ -23,14 +24,13 @@ The $\mathbf{Q}$ and $R$ was chosen to be
     \end{align}
 \end{subequations}
 
-Using these weights we implemented the LQ controller using the code found in listing \cref{lst:LQ} and the simulink diagram found in \cref{fig:simulink_LQ}.
+Using these weights we implemented the LQ controller using the code found in listing \ref{lst:LQ} and the simulink diagram found in \cref{fig:simulink_LQ}.
 
-\begin{lstlisting}
+\begin{lstlisting}[caption={MatLab code for LQ controller},label=lst:LQ]
     Q = diag([50 1 10 10]);
     R = diag(1);
 
     [K,S,e] = dlqr(A1, B1,Q,R);
-    \label{lst:LQ}
 \end{lstlisting}
 
 \begin{figure}

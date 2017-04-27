@@ -2,7 +2,7 @@
 
 \section{Exercise 4}
 \subsection{Continuous time state space model}
-We introduce two new states. The continuous time system can now be written as $\mathbf{\dot{x}} = \mathbf{A}_c\mathbf{x}+ \mathbf{B}_c \mathbf{u}$, with
+We introduce two new states: elevation $e$ and its rate $\dot{e}$. The continuous time system can now be written as $\mathbf{\dot{x}} = \mathbf{A}_c\mathbf{x}+ \mathbf{B}_c \mathbf{u}$, with
 \begin{subequations}
     \begin{align}
         \mathbf{x} &= \begin{bmatrix}
@@ -61,12 +61,12 @@ The system was discretized using the forward Euler method. Using \cref{eq:eulerf
 \subsection{Objective function and inequality constraints on elevation}
 In this exercise, we minimized the cost function
 \begin{equation}
-        \phi =\sum (\lambda_t - \lambda_f)^2 + r_{p}p_{ct}^2 + r_{e}e_{ct}^2
+        \phi =\sum (\lambda_i - \lambda_f)^2 + r_{p}p_{ci}^2 + r_{e}e_{ci}^2
 \end{equation}
-This can be written as
+which can be written as
 \begin{subequations}
     \begin{align}
-        \phi &= \sum(x^{T}Qx+u^{T}Ru) \\
+        \phi &= \sum(x^{T}\mathbf{Q}x+u^{T}\mathbf{R}u) \\
         \mathbf{Q} &= \begin{bmatrix}
         1 & 0 & 0 & 0 & 0 & 0         \\
         0 & 0 & 0 & 0 & 0 & 0         \\
@@ -81,8 +81,23 @@ This can be written as
         \end{bmatrix}
     \end{align}
 \end{subequations}
+Having the cost function on this form makes it very easy to change or add weighting for different states and inputs.
+
 We restricted the helicopter to obey the non-linear inequality constraint
 \begin{equation}
 e_k \geq \alpha e^{-\beta(\lambda_k-\lambda_t)^{2}}
 \end{equation}
 every timestep $k$ until the time horizon.
+Since this constraint is non-linear, a non-linear solver was needed. The matlab function \texttt{fmincon} was used to compute the optimal trajectory through the state space.
+
+\todo[inline]{MAYBE ADD EXPLAIN FMINCON SOLUTION METHOD}
+
+\todo[inline]{ADD PLOTS OF THE OPTIMAL PATH!!}
+\todo[inline]{DISCUSS RESULTS!!}
+
+\subsection{Experimental results}
+The optimal trajectory was fed into the helicopter, both with and without feedback
+
+\todo[inline]{ADD PLOTS OF THE EXPERIMENT PATH!!}
+\todo[inline]{DISCUSS RESULTS!!}
+

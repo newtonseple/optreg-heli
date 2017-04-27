@@ -2,7 +2,7 @@
 
 \section{Optimal Control of Pitch/Travel with Feedback (LQ)}
 \subsection{LQR}
-In the previous exercise we calculated the optimal path, and fed it to the PID controllers. This worked well, but when the helicopter reached the final position, it did not stay there, as it did not correct for the drift in position due to momentum. This can be corrected with the use of a second controller between the optimization layer and the basic control layer. This controller will ensure that the helicopter stays on the planned trajectory.
+In the previous exercise we calculated the optimal path, and fed it to the PID controllers. This worked well, but when the helicopter reached the final position, it did not stay there, as it did not correct for the drift in position due to momentum and differences in the propellers. This can be corrected with the use of a second controller between the optimization layer and the basic control layer. This controller will ensure that the helicopter stays on the planned trajectory.
 
 This second regulator is implemented as a LQ controller. This regulator minimizes the cost function $J$ defined by
 
@@ -23,7 +23,31 @@ The $\mathbf{Q}$ and $R$ was chosen to be
     \end{align}
 \end{subequations}
 
-\missingfigure{\label{fig:prob3_lambda}}
+Using these weights we implemented the LQ controller using the code found in listing \cref{lst:LQ} and the simulink diagram found in \cref{fig:simulink_LQ}.
+
+\begin{lstlisting}
+    Q = diag([50 1 10 10]);
+    R = diag(1);
+
+    [K,S,e] = dlqr(A1, B1,Q,R);
+    \label{lst:LQ}
+\end{lstlisting}
+
+\begin{figure}
+    \includegraphics[width=\textwidth]{ex3sim.pdf}
+    \caption{Simulink diagram including LQ controller}
+    \label{fig:simulink_LQ}
+\end{figure}
+
+\begin{figure}
+    \includegraphics{optimal_and_measured_lambda_ex3.eps}
+    \caption{Optimal and measured $\lambda$ with feedback (LQ)}
+    \label{fig:opt_meas_lambda_ex3}
+\end{figure}
+
+This gives us the response seen in \cref{fig:opt_meas_lambda_ex3}. As we can see, we no longer have the drifting problem experienced earlier. We do, however have a constant error. This error could be removed if the LQ controller also had an integral term.
+
+
 
 \subsection{MPC}
 MPC can be realized by solving a finite horizon open loop optimal control problem at each time step, \todo{how to do dis in simulink}

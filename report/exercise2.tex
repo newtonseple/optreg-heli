@@ -88,7 +88,7 @@ The weight matrix Q was generated using the function genq2, and c is a vector of
 
 Finally, mx denotes the number of states, mu the number of inputs, N the time horizon for states and M the time horizon for inputs. For a more detailed description of the above functions, see Appendix X.\todo{make an actual reference}
 
-The optimal input and optimal trajectory for the travel rate $\lambda$ are shown in [\ref{fig:optimal_inputs}] and [\ref{fig:optimal_lambda}], respectively. 
+The optimal input and optimal trajectory for the travel rate $\lambda$ are shown in [\ref{fig:optimal_inputs}] and [\ref{fig:optimal_lambda}], respectively.
 %\clearpage %Let LaTeX handle this
 
 \begin{figure}[h]
@@ -105,9 +105,9 @@ The optimal input and optimal trajectory for the travel rate $\lambda$ are shown
     \label{fig:optimal_lambda}
 \end{figure}
 
-The cost function to be minimized is $\phi = \sum_{i=1}^{N} (\lambda_i-\lambda_f)^2 + qp_{ci}^2$. The first term aims to penalize deviation from the reference point $\lambda_f$, while the second one penalizes inputs $p_{ci}$. The relative cost of the two terms is set using the weight q. This can be seen in [\ref{fig:optimal_inputs}]; optimal input trajectories with larger Q are associated with a higher cost on the input, and are therefore more damped compared to optimal inputs with smaller Q. This is also reflected in [\ref{fig:optimal_lambda}]; the optimal trajectory with the smallest weight is the fastest one, at the cost of some overshoot.
+The cost function to be minimized is $\phi = \sum_{i=1}^{N} (\lambda_i-\lambda_f)^2 + qp_{ci}^2$. The first term aims to penalize deviation from the reference point $\lambda_f$, while the second one penalizes inputs $p_{ci}$. The relative cost of the two terms is set using the weight q. This can be seen in [\cref{fig:optimal_inputs}]; optimal input trajectories with larger Q are associated with a higher cost on the input, and are therefore more damped compared to optimal inputs with smaller Q. This is also reflected in [\cref{fig:optimal_lambda}]; the optimal trajectory with the smallest weight is the fastest one, at the cost of some overshoot.
 
-The smallest weight $Q=0.1$ gives the most aggressive control, but requires rapid changes in input, which might wear down the system over time. $Q=10$ on the other hand, seems rather slow. $Q=1$ seems like a good compromise; it is reasonably fast and not so hard on the actuators. In addition, [\ref{fig:optimal_lambda}] shows that it, at least in theory, gives the least amount of overshoot.
+The smallest weight $Q=0.1$ gives the most aggressive control, but requires rapid changes in input, which might wear down the system over time. $Q=10$ on the other hand, seems rather slow. $Q=1$ seems like a good compromise; it is reasonably fast and not so hard on the actuators. In addition, [\cref{fig:optimal_lambda}] shows that it, at least in theory, gives the least amount of overshoot.
 
 One downside of the cost function is that it does not include travel rate. So if the time horizon is not large enough, one might risk that it moves to the set point as fast as possible, without trying to stay there. In other words, it might have a high travel rate when it reaches the destination.
 
@@ -133,6 +133,6 @@ The Simulink implementation is shown below. For the full Matlab code, see the Ap
 
 The helicopter does not end in the desired point $x_f$. There seems to be a constant error in travel rate or pitch. This is largely \todo{er det flere grunner?} because of model inaccuracies; discretization errors from using forward Euler and linearization errors, in addition to inherent model errors/simplifications. Also, the system is affected by noise (e.g. wind currents) as well as measurement errors.
 
-If our model was completely accurate, the helicopter would have followed the planned trajectory. However, since this never is the case, the fault lies in the regulator; there is no feedback for $\lambda$, so it has no way to correct for the model inaccuracies. 
+If our model was completely accurate, the helicopter would have followed the planned trajectory. However, since this never is the case, the fault lies in the regulator; there is no feedback for $\lambda$, so it has no way to correct for the model inaccuracies.
 
 %\clearpage

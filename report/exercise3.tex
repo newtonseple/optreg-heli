@@ -52,6 +52,8 @@ This gives us the response seen in \cref{fig:opt_meas_lambda_ex3}. As we can see
 \subsection{MPC}
 MPC can be realized by solving a finite horizon open loop optimal control problem at each time step, \todo{how to do dis in simulink}
 
+\todo[inline]{Skriv om de neste to avsnittene så de blir sanne}
+
 One advantage with MPC compared to LQR is that MPC is more robust. This is because the MPC calculates a new optimal input for each timestep, rather than doing everything a priori. In addition, MPC allows the use of constraints.
 
 On the other hand, MPC is far more resource-demanding than LQR. Also, the solution using MPC is usually not optimal in the context of the cost function (as mentioned above, it optimizes with respect to stability or other metrics). Another downside to MPC is that it requires a model of the system, while LQR does not.

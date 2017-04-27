@@ -73,7 +73,7 @@ It should be noted that forward Euler has rather awful precision and stability p
     [z,lambda] = quadprog(Q,c,[],[], Aeq, beq, vlb, vub);
 \end{lstlisting}
 
-The optimal trajectory \todo{what optimal trajectory?} was calculated using \texttt{quadprog}, which takes a weight matrix \texttt{Q}, vector \texttt{c} (from the cost function $x^TQx + c^Tx$), inequality constraints matrices \texttt{A}, \texttt{B}, equality constraints \texttt{Aeq}, \texttt{Beq} and lower and upper bounds \texttt{vlb}, \texttt{vub} on the inputs, and returns a vector z with the optimal trajectory for all the states, along with a vector $\lambda$ containing the Lagrange multipliers at the solution.
+The optimal trajectory for rotating the helicopter $180^\circ$ (from $\lambda=\pi$ to $\lambda=0$) was calculated using \texttt{quadprog}, which takes a weight matrix \texttt{Q}, vector \texttt{c} (from the cost function $x^TQx + c^Tx$), inequality constraints matrices \texttt{A}, \texttt{B}, equality constraints \texttt{Aeq}, \texttt{Beq} and lower and upper bounds \texttt{vlb}, \texttt{vub} on the inputs, and returns a vector z with the optimal trajectory for all the states, along with a vector $\lambda$ containing the Lagrange multipliers at the solution.
 
 \begin{lstlisting}
     Q1(1,1) = 1;
@@ -119,7 +119,7 @@ Another possible downside is the cost term $(\lambda_i - \lambda_f)^2$, which do
 \clearpage
 
 \subsection{Data and results}
-The Simulink implementation \todo{Implementation of what?} can be found in Appendix \ref{appendix:B}. Zeros were added before and after the optimal input sequence. For the full Matlab code, see Appendix \ref{appendix:A}.
+The Simulink implementation of the helicopter system with controllers can be found in Appendix \ref{appendix:B}. Zeros were added before and after the optimal input sequence. For the full Matlab code, see Appendix \ref{appendix:A}.
 
 \begin{figure}[H]
     \centering

@@ -11,7 +11,7 @@ As mentioned we used an LQR to ensure that the helicopter stays on the optimal t
     J = \sum^{\infty}_{i=0} \mathbf{\Delta} \mathbf{x}^T_{i+1}\mathbf{Q}\mathbf{\Delta} \mathbf{x}_{i+1}+\mathbf{\Delta} \mathbf{u}_i^T R \mathbf{\Delta} \mathbf{u}_i
 \end{equation}
 
-The $\mathbf{Q}$ and $R$ was chosen to be
+The $\mathbf{Q}$ and $R$ matrices were chosen to be
 
 \begin{subequations}
     \begin{align}
@@ -45,7 +45,7 @@ In \cref{fig:opt_meas_lambda_ex3} we see the response of the modified system wit
 %This gives us the response seen in \cref{fig:opt_meas_lambda_ex3}. As we can see, we no longer have the drifting problem experienced earlier. We do, however have a constant error. This error could be removed if the LQ controller also had an integral term.
 
 \subsection{MPC}
-MPC can be realized by solving a finite horizon open loop optimal control problem at each time step. This calculates the optimal trajectory from the current position at each timestep, then applies the first input. In this way the MPC implement sa feedback loop, and finds the optimal way to cancel out disturbances. This is computationally expensive, but you get the ability to add constraints, a feature lacking in simpler controllers. A consequence of this is that while we have to use three layers of control, one to find the optimal trajectory, one to ensure that the helicopter stays on the trajectory and one to control the actuators, a MPC combines the first two layers, and as such only needs two layers.
+MPC can be realized by solving a finite horizon open loop optimal control problem at each time step. This calculates the optimal trajectory from the current position at each timestep, then applies the first input. In this way the MPC implements a feedback loop, and finds the optimal way to cancel out disturbances. This is computationally expensive, but you get the ability to add constraints, a feature lacking in simpler controllers. A consequence of this is that while we have to use three layers of control, one to find the optimal trajectory, one to ensure that the helicopter stays on the trajectory and one to control the actuators, an MPC combines the first two layers, and as such only needs two layers.
 
 %\todo[inline]{Skriv om de neste to avsnittene så de blir sanne}
 %

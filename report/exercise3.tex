@@ -25,9 +25,9 @@ The $\mathbf{Q}$ and $R$ was chosen to be
     \end{align}
 \end{subequations}
 
-Using these weights we implemented the LQ controller using the code found in listing \ref{lst:LQ} and the simulink diagram found in \cref{fig:simulink_LQ}.
+Using these weights we implemented the LQ controller using the code found in listing \ref{lst:LQ} and the Simulink diagram found in \cref{fig:simulink_LQ}.
 
-\begin{lstlisting}[caption={MatLab code for LQ controller},label=lst:LQ]
+\begin{lstlisting}[caption={MATLAB code for LQ controller},label=lst:LQ]
     Q = diag([50 1 10 10]);
     R = diag(1);
 
@@ -40,16 +40,18 @@ Using these weights we implemented the LQ controller using the code found in lis
     \label{fig:simulink_LQ}
 \end{figure}
 
-\begin{figure}
-    \includegraphics{optimal_and_measured_lambda_ex3.eps}
+\begin{figure}[h]
+    \includegraphics[width=\textwidth]{ex3_with_vs_without_feedback.eps}
     \caption{Optimal and measured $\lambda$ with feedback (LQ)}
     \label{fig:opt_meas_lambda_ex3}
 \end{figure}
 
-This gives us the response seen in \cref{fig:opt_meas_lambda_ex3}. As we can see, we no longer have the drifting problem experienced earlier. We do, however have a constant error. This error could be removed if the LQ controller also had an integral term.
+In \cref{fig:opt_meas_lambda_ex3} we see the response of the modified system with three layers of control, alongside the original system. As we can see, the system with feedback performs much better than the system without. The helicopter stays close to the optimal trajectory, and stays still close to the target position. However the system doesn't quite reach the target position of 0. This constant error is due to model inaccuracies, and a difference in the motors. This error can be removed with the use of integral effect in the LQR.
+
+%This gives us the response seen in \cref{fig:opt_meas_lambda_ex3}. As we can see, we no longer have the drifting problem experienced earlier. We do, however have a constant error. This error could be removed if the LQ controller also had an integral term.
 
 \subsection{MPC}
-MPC can be realized by solving a finite horizon open loop optimal control problem at each time step. This calculates the optimal trajectory from the current position at each timestep, then applies the first input. In this way the MPC implement sa feedback loop, and finds the optimal way to cancel out disturbances. This is computationally expensive, but you get the ability to add constraints, a feature lacking in simpler controllers. A consequence of this is that while we have to use three layers of control, one to find the optimal trajectory, one to ensure that the helicopter stays on the trajectory and one to control the acuators, a MPC combines the first two layers, and as such only needs two layers.
+MPC can be realized by solving a finite horizon open loop optimal control problem at each time step. This calculates the optimal trajectory from the current position at each timestep, then applies the first input. In this way the MPC implement sa feedback loop, and finds the optimal way to cancel out disturbances. This is computationally expensive, but you get the ability to add constraints, a feature lacking in simpler controllers. A consequence of this is that while we have to use three layers of control, one to find the optimal trajectory, one to ensure that the helicopter stays on the trajectory and one to control the actuators, a MPC combines the first two layers, and as such only needs two layers.
 
 %\todo[inline]{Skriv om de neste to avsnittene så de blir sanne}
 %

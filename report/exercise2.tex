@@ -104,13 +104,13 @@ The optimal input and optimal trajectory for the travel rate $\lambda$ are shown
 \begin{figure}[H]
     \centering
     \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{optimal_lambda.eps}}
-    \caption{Optimal $\lambda$ using LQ controller with different Qs.}
+    \caption{Optimal $\lambda$ using LQ controller with different qs.}
     \label{fig:optimal_lambda}
 \end{figure}
 
-The cost function to be minimized is $\phi = \sum_{i=1}^{N} (\lambda_i-\lambda_f)^2 + qp_{ci}^2$. The first term aims to penalize deviation from the reference point $\lambda_f$, while the second one penalizes inputs $p_{ci}$. The relative cost of the two terms is set using the weight $q$. This can be seen in \cref{fig:optimal_inputs}; optimal input trajectories with larger $Q$ are associated with a higher cost on the input, and are therefore more damped compared to optimal inputs with smaller $Q$. This is also reflected in \cref{fig:optimal_lambda}; the optimal trajectory with the smallest weight is the fastest one, at the cost of some overshoot.
+The cost function to be minimized is $\phi = \sum_{i=1}^{N} (\lambda_i-\lambda_f)^2 + qp_{ci}^2$. The first term aims to penalize deviation from the reference point $\lambda_f$, while the second one penalizes inputs $p_{ci}$. The relative cost of the two terms is set using the weight $q$. This can be seen in \cref{fig:optimal_inputs}; optimal input trajectories with larger $q$ are associated with a higher cost on the input, and are therefore more damped compared to optimal inputs with smaller $q$. This is also reflected in \cref{fig:optimal_lambda}; the optimal trajectory with the smallest weight is the fastest one, at the cost of some overshoot.
 
-The smallest weight $Q=0.1$ gives the most aggressive control, but requires rapid changes in input, which might wear down the system over time. $Q=10$ on the other hand, seems rather slow. $Q=1$ seems like a good compromise; it is reasonably fast and not so hard on the actuators. In addition, \cref{fig:optimal_lambda} shows that it, at least in theory, gives the least amount of overshoot.
+The smallest weight $q=0.1$ gives the most aggressive control, but requires rapid changes in input, which might wear down the system over time. $q=10$ on the other hand, seems rather slow. $q=1$ seems like a good compromise; it is reasonably fast and not so hard on the actuators. In addition, \cref{fig:optimal_lambda} shows that it, at least in theory, gives the least amount of overshoot.
 
 One downside of the cost function is that it does not include travel rate. So if the time horizon is not large enough, one might risk that it moves to the set point as fast as possible, without trying to stay there. In other words, it might have a high travel rate when it reaches the destination.
 

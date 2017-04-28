@@ -99,17 +99,35 @@ Since this constraint is non-linear, a non-linear solver was needed. The matlab 
     \label{fig:p4o}
 \end{figure}
 
+\begin{figure}
+    \includegraphics[width=\textwidth]{p4_2d_path.eps}
+    \caption{Optimal trajectory in exercise 4. Evaluated constraint can be seen in blue in the elevation graph.}
+    \label{fig:p4o2}
+\end{figure}
+
+
 %\todo[inline]{DISCUSS RESULTS!! Done here:}
-The calculated optimal trajectory, shown in \cref{fig:p4o}, looks much like the one from \cref{subsec:p2d}. The elevation trajectory is also calculated, and appears to adhere to our constraint. Upon closer inspection, however, it is revealed that the trajectory passes through the constraint. This is because the discretization is too coarse to catch the ``collision'' (see (REFERANSE FIGUR2)).
+The calculated optimal trajectory, shown in \cref{fig:p4o}, looks much like the one from \cref{subsec:p2o}. The elevation trajectory is also calculated, and appears to adhere to our constraint. Upon closer inspection, however, it is revealed that the trajectory passes through the constraint. This is because the discretization is too coarse to catch the ``collision'' (see \cref{fig:p4o2}).
 
 \subsection{Experimental results}
 The optimal trajectory was fed into the helicopter, both with and without feedback
 
-\todo[inline]{ADD PLOTS OF THE EXPERIMENT PATH!! WITH AND WITHOUT FEEDBACK}
-%\todo[inline]{DISCUSS RESULTS!! Done here:}
-The open-loop results, shown in (REFERANSE FIGUR), look much like the ones from (REFERANSE P2), and measured $\lambda$ drifting off because of the lack of feedback. Measured $e$ was closer to following the path, because that state has its own controller with feedback anyway.
+%\todo[inline]{ADD PLOTS OF THE EXPERIMENT PATH!! WITH AND WITHOUT FEEDBACK}
+\begin{figure}
+    \includegraphics[width=\textwidth]{optimal_and_measured_lambda.eps}
+    \caption{Optimal and measured travel and elevation over time.}
+    \label{fig:p4d}
+\end{figure}
 
-The closed loop results, shown in (REFERANSE FIGUR), also reminds us of (REFERANSE P2). While developing a relatively small constant error, the system reaches the target. It fails to stay entirely above the constraint. This is partially because the calculated optimal path travels through it, but also because the controller is not fast and accurate enough at that scale, and because the model is inaccurate. If the constraint represented an obstacle or hazard, it would have to be avoided by adding a bigger ``buffer zone''. Alternatively, an MPC controller could be used, allowing new paths avoiding the constraint to be calculated online.
+\begin{figure}
+    \includegraphics[width=\textwidth]{elevation_vs_lambda.eps}
+    \caption{Optimal and measured travel against elevation with continuous constraint.}
+    \label{fig:p4d2}
+\end{figure}
+%\todo[inline]{DISCUSS RESULTS!! Done here:}
+The open-loop results, shown in \cref{fig:p4d} and \cref{fig:p4d2}, look much like the ones from \cref{subsec:p2d}, and measured $\lambda$ drifting off because of the lack of feedback. Measured $e$ was closer to following the path, because that state has its own controller with feedback anyway.
+
+The closed loop results, however, go to the target position. While developing a relatively small constant error, the system reaches the target. It fails to stay entirely above the constraint. This is partially because the calculated optimal path travels through it, but also because the controller is not fast and accurate enough at that scale, and because the model is inaccurate. If the constraint represented an obstacle or hazard, it would have to be avoided by adding a bigger ``buffer zone''. Alternatively, an MPC controller could be used, allowing new paths avoiding the constraint to be calculated online.
 
 \subsection{Decoupled states}
 %\todo[inline]{ADD INFO ABOUT DECOUPLED STATES!! Done here:}

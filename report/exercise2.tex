@@ -68,6 +68,7 @@ and we see that
 It should be noted that forward Euler has rather awful precision and stability properties compared to other discretization methods. On the plus side, it is intuitive and easy to implement.
 
 \subsection{Optimal trajectory planning}
+\label{subsec:p2o}
 \todo[inline]{Rydd opp i $q$ (kodens P1) og $\mathbf{Q}$. Plottene og teksten har Q der det burde stått $q$}
 \begin{lstlisting}
     [z,lambda] = quadprog(Q,c,[],[], Aeq, beq, vlb, vub);

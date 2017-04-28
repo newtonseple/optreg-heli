@@ -34,12 +34,6 @@ Using these weights we implemented the LQ controller using the code found in lis
     [K,S,e] = dlqr(A1, B1,Q,R);
 \end{lstlisting}
 
-\begin{figure}
-    \includegraphics[width=\textwidth]{ex3sim.pdf}
-    \caption{Simulink diagram including LQ controller}
-    \label{fig:simulink_LQ}
-\end{figure}
-
 \begin{figure}[h]
     \includegraphics[width=\textwidth]{ex3_with_vs_without_feedback.eps}
     \caption{Optimal and measured $\lambda$ with feedback (LQ)}

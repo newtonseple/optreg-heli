@@ -5,7 +5,7 @@
 
 %In the previous exercise we calculated the optimal path, and fed it to the PID controllers. This worked well, but when the helicopter reached the final position, it did not stay there, as it did not correct for the drift in position due to momentum and differences in the propellers. This can be corrected with the use of a second controller between the optimization layer and the basic control layer. This controller will ensure that the helicopter stays on the planned trajectory.
 
-As mentioned we used a LQR to ensure that the helicopter stays on the optimal trajectory. This regulator minimizes the cost function $J$ defined by
+As mentioned we used an LQR to ensure that the helicopter stays on the optimal trajectory. This regulator minimizes the cost function $J$ defined by
 
 \begin{equation}
     J = \sum^{\infty}_{i=0} \mathbf{\Delta} \mathbf{x}^T_{i+1}\mathbf{Q}\mathbf{\Delta} \mathbf{x}_{i+1}+\mathbf{\Delta} \mathbf{u}_i^T R \mathbf{\Delta} \mathbf{u}_i

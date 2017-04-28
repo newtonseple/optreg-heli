@@ -102,9 +102,9 @@ The optimal trajectory was fed into the helicopter, both with and without feedba
 
 \todo[inline]{ADD PLOTS OF THE EXPERIMENT PATH!!}
 %\todo[inline]{DISCUSS RESULTS!! Done here:}
-The open-loop results, shown in (REFERANSE FIGUR), looks much like the one from (REFERANSE P2), measured $\lambda$ drifting off because of the lack of feedback. Measured $e$ was closer to following the path, because that state has its own controller with feedback anyway.
+The open-loop results, shown in (REFERANSE FIGUR), look much like the ones from (REFERANSE P2), and measured $\lambda$ drifting off because of the lack of feedback. Measured $e$ was closer to following the path, because that state has its own controller with feedback anyway.
 
-The closed loop results, shown in (REFERANSE FIGUR), also reminds us of (REFERANSE P2). While developing a relatively small constant error, the system reaches the target. It fails to stay entirely above the constraint. This is partially because the calculated optimal path travels through it, but also because the controller is not fast and accurate enough at that scale, and because the model is inaccurate. If the constraint represented an obstacle or hazard, it would have to be avoided by adding a bigger ``buffer zone''. Alternatively, An MPC controller could be used, allowing new paths avoiding the constraint to be calculated online.
+The closed loop results, shown in (REFERANSE FIGUR), also reminds us of (REFERANSE P2). While developing a relatively small constant error, the system reaches the target. It fails to stay entirely above the constraint. This is partially because the calculated optimal path travels through it, but also because the controller is not fast and accurate enough at that scale, and because the model is inaccurate. If the constraint represented an obstacle or hazard, it would have to be avoided by adding a bigger ``buffer zone''. Alternatively, an MPC controller could be used, allowing new paths avoiding the constraint to be calculated online.
 
 \subsection{Decoupled states}
 %\todo[inline]{ADD INFO ABOUT DECOUPLED STATES!! Done here:}

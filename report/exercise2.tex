@@ -125,14 +125,15 @@ The Simulink implementation of the helicopter system with controllers can be fou
     \centering
     \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{optimal_and_measured_lambda.eps}}
     \caption{Optimal and measured $\lambda$ using LQ controller}
-    \label{fig:my_label}
+    \label{fig:optimal_and_measured}
 \end{figure}
 
 \todo{mention \cref{fig:my_label} in the text if needed, else remove the figure}
 
 
-The helicopter does not end in the desired point $x_f$. There seems to be a constant error in travel rate or pitch. This is largely \todo{er det flere grunner?} because of model inaccuracies; discretization errors from using forward Euler and linearization errors, in addition to inherent model errors/simplifications. Also, the system is affected by noise (e.g. wind currents) as well as measurement errors.
+The helicopter does not end in the desired point $x_f$. As can be seen in \cref{fig:optimal_and_measured}, the overall shape of the measured trajectory matches the optimal one, but the real system suffers from drift. This is largely because of model inaccuracies; discretization errors from using forward Euler and linearization errors, in addition to inherent model errors and simplifications. Also, the system is affected by noise (e.g. wind currents) as well as measurement errors.
 
 If our model was completely accurate, the helicopter would have followed the planned trajectory. However, since this never is the case, the fault lies in the regulator; there is no feedback for $\lambda$, so it has no way to correct for the model inaccuracies.
 
+This can be remedied by using a second controller between the optimization layer and the basic control layer. This controller will ensure that the helicopter stays on the planned trajectory. In the next exercise we use an LQR for this task.
 %\clearpage

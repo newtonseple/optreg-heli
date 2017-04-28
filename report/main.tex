@@ -1,6 +1,6 @@
 % !TEX root = main.tex
 
-\documentclass{article}
+\documentclass[a4 paper]{article}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
@@ -28,8 +28,18 @@
 
 \begin{document}
     \input{titlepage.tex}
+    \input{abstract.tex}
     \input{exercise2.tex}
     \input{exercise3.tex}
     \input{exercise4.tex}
     \input{appendices.tex}
+    \newpage
+    \begin{thebibliography}{9}
+        \nocite{*}
+        \bibitem{oppgave}
+        \emph{TTK4135 Optimization and Control, Helicopter Lab},
+        Exercise text,
+        Trondheim,
+        February 2017
+    \end{thebibliography}
 \end{document}

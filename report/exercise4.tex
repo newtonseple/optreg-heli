@@ -92,15 +92,20 @@ Since this constraint is non-linear, a non-linear solver was needed. The matlab 
 
 %\todo[inline]{MAYBE ADD EXPLAIN FMINCON SOLUTION METHOD?}
 
-\todo[inline]{ADD PLOTS OF THE OPTIMAL PATH!!}
+%\todo[inline]{ADD PLOTS OF THE OPTIMAL PATH!! Done}
+\begin{figure}
+    \includegraphics[width=\textwidth]{p4_trajectory.eps}
+    \caption{Optimal trajectory in exercise 4. Evaluated constraint can be seen in blue in the elevation graph.}
+    \label{fig:p4o}
+\end{figure}
 
 %\todo[inline]{DISCUSS RESULTS!! Done here:}
-The calculated optimal trajectory, shown in (REFERANSE FIGUR), looks much like the one from (REFERANSE P2). The elevation trajectory is also calculated, and appears to adhere to our constraint. Upon closer inspection, however, it is revealed that the trajectory passes through the constraint. This is because the discretization is too coarse to catch the ``collision'' (see (REFERANSE FIGUR2)).
+The calculated optimal trajectory, shown in \cref{fig:p4o}, looks much like the one from \cref{subsec:p2d}. The elevation trajectory is also calculated, and appears to adhere to our constraint. Upon closer inspection, however, it is revealed that the trajectory passes through the constraint. This is because the discretization is too coarse to catch the ``collision'' (see (REFERANSE FIGUR2)).
 
 \subsection{Experimental results}
 The optimal trajectory was fed into the helicopter, both with and without feedback
 
-\todo[inline]{ADD PLOTS OF THE EXPERIMENT PATH!!}
+\todo[inline]{ADD PLOTS OF THE EXPERIMENT PATH!! WITH AND WITHOUT FEEDBACK}
 %\todo[inline]{DISCUSS RESULTS!! Done here:}
 The open-loop results, shown in (REFERANSE FIGUR), look much like the ones from (REFERANSE P2), and measured $\lambda$ drifting off because of the lack of feedback. Measured $e$ was closer to following the path, because that state has its own controller with feedback anyway.
 
@@ -108,4 +113,4 @@ The closed loop results, shown in (REFERANSE FIGUR), also reminds us of (REFERAN
 
 \subsection{Decoupled states}
 %\todo[inline]{ADD INFO ABOUT DECOUPLED STATES!! Done here:}
-In the model used in this exercise, the elevation and pitch systems are completely decoupled. This is obviously not true, as tilting tilting the helicopter makes it harder to fly upwards, resulting in an inaccurate model. The model could include crossing terms accounting for this coupling, but that would make the objective function non-linear, making the problem a lot harder, computationally.
+In the model used in this exercise, the elevation and pitch/travel systems are completely decoupled. This is obviously not true, as tilting the helicopter makes it harder to fly upwards, resulting in an inaccurate model. The model could include crossing terms accounting for this coupling, but that would make the objective function non-linear, making the problem a lot harder, computationally.
